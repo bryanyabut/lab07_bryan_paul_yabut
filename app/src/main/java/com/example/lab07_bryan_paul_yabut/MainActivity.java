@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_EDIT = 100;
     private DBHelper db;
     private ListView listView;
+    private BooksAdapter adapter;
     private ArrayList<Book> books;
 
     @Override
@@ -59,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadBooks(){
-
+        books = db.getAllBooks();
+        if (adapter == null) {
+            adapter = new BooksAdapter(this, R.layout.list_item_book, books);
+            listView.setAdapter(adapter);
+        } else {
+            adapter.clear();
+            adapter.addAll(books);
+            adapter.notifyDataSetChanged();
+        }
     }
 }
