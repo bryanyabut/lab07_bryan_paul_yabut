@@ -30,14 +30,6 @@ public class EditBookActivity extends AppCompatActivity {
         etYear = findViewById(R.id.etYear);
         Button btnSave = findViewById(R.id.btnSave);
 
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_edit_book);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
         if (getIntent().hasExtra("book_id")) {
             bookId = getIntent().getIntExtra("book_id", 0);
             if (bookId > 0) {
